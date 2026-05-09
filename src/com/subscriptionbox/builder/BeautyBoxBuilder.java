@@ -1,12 +1,7 @@
 package com.subscriptionbox.builder;
 
 import com.subscriptionbox.factory.BoxFactory;
-import com.subscriptionbox.model.Box;
 
-/**
- * Concrete Builder for Beauty boxes.
- * Configures a BeautyBox with appropriate items and pricing.
- */
 public class BeautyBoxBuilder extends BoxBuilder {
 
     @Override

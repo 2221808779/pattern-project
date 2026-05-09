@@ -1,11 +1,5 @@
 package com.subscriptionbox.strategy;
 
-import com.subscriptionbox.strategy.PaymentStrategy;
-
-/**
- * PayPal payment strategy implementation.
- * Part of the Strategy Pattern.
- */
 public class PayPalPayment implements PaymentStrategy {
     private String email;
 

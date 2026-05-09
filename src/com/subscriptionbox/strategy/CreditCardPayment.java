@@ -1,11 +1,5 @@
 package com.subscriptionbox.strategy;
 
-import com.subscriptionbox.strategy.PaymentStrategy;
-
-/**
- * Credit Card payment strategy implementation.
- * Part of the Strategy Pattern.
- */
 public class CreditCardPayment implements PaymentStrategy {
     private String cardNumber;
     private String cardHolder;

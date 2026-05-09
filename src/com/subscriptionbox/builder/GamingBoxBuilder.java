@@ -1,12 +1,7 @@
 package com.subscriptionbox.builder;
 
 import com.subscriptionbox.factory.BoxFactory;
-import com.subscriptionbox.model.Box;
 
-/**
- * Concrete Builder for Gaming boxes.
- * Configures a GamingBox with appropriate items and pricing.
- */
 public class GamingBoxBuilder extends BoxBuilder {
 
     @Override

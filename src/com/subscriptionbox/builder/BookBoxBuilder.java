@@ -1,12 +1,7 @@
 package com.subscriptionbox.builder;
 
 import com.subscriptionbox.factory.BoxFactory;
-import com.subscriptionbox.model.Box;
 
-/**
- * Concrete Builder for Book boxes.
- * Configures a BookBox with appropriate items and pricing.
- */
 public class BookBoxBuilder extends BoxBuilder {
 
     @Override

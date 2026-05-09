@@ -1,21 +1,21 @@
 package com.subscriptionbox.ui;
 
+import com.subscriptionbox.builder.BeautyBoxBuilder;
+import com.subscriptionbox.builder.BookBoxBuilder;
 import com.subscriptionbox.builder.BoxBuilder;
+import com.subscriptionbox.builder.GamingBoxBuilder;
 import com.subscriptionbox.model.Box;
 import com.subscriptionbox.model.Subscription;
 import com.subscriptionbox.model.User;
 import com.subscriptionbox.service.OrderService;
 import com.subscriptionbox.service.PaymentService;
-import com.subscriptionbox.service.SubscriptionService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -33,7 +33,6 @@ public class BoxDetailsScreen extends VBox {
     private final User user;
     private final String boxType;
     private final int durationMonths;
-    private final SubscriptionService subscriptionService;
     private final OrderService orderService;
     private final PaymentService paymentService;
 
@@ -43,13 +42,11 @@ public class BoxDetailsScreen extends VBox {
     private Label priceLabel;
 
     public BoxDetailsScreen(Stage stage, User user, String boxType, int durationMonths,
-                            SubscriptionService subscriptionService, OrderService orderService,
-                            PaymentService paymentService) {
+                            OrderService orderService, PaymentService paymentService) {
         this.stage = stage;
         this.user = user;
         this.boxType = boxType;
         this.durationMonths = durationMonths;
-        this.subscriptionService = subscriptionService;
         this.orderService = orderService;
         this.paymentService = paymentService;
 
@@ -235,27 +232,6 @@ public class BoxDetailsScreen extends VBox {
             }
         }
 
-        double finalPrice = box.getPrice();
-        if (box.getSize().equals("Small")) finalPrice *= 0.9;
-        else if (box.getSize().equals("Large")) finalPrice *= 1.2;
-        if (box.isPremium()) finalPrice += 15;
-        if (extraItemsContainer != null) {
-            for (javafx.scene.Node node : extraItemsContainer.getChildren()) {
-                if (node instanceof CheckBox) {
-                    CheckBox cb = (CheckBox) node;
-                    if (cb.isSelected()) {
-                        String text = cb.getText();
-                        if (text.contains("+$5")) finalPrice += 5;
-                        else if (text.contains("+$8")) finalPrice += 8;
-                        else if (text.contains("+$7")) finalPrice += 7;
-                        else if (text.contains("+$6")) finalPrice += 6;
-                        else if (text.contains("+$4")) finalPrice += 4;
-                        else if (text.contains("+$3")) finalPrice += 3;
-                    }
-                }
-            }
-        }
-
         Subscription subscription = new Subscription(user, box, durationMonths);
 
         PaymentScreen paymentScreen = new PaymentScreen(stage, user, subscription, orderService, paymentService);
@@ -266,27 +242,21 @@ public class BoxDetailsScreen extends VBox {
 
     private BoxBuilder getBuilderForType(String type) {
         String t = type.toLowerCase();
-        if ("beauty".contains(t) || t.contains("beauty")) {
-            return new com.subscriptionbox.builder.BeautyBoxBuilder();
-        } else if ("gaming".contains(t) || t.contains("gaming")) {
-            return new com.subscriptionbox.builder.GamingBoxBuilder();
-        } else if ("book".contains(t) || t.contains("book")) {
-            return new com.subscriptionbox.builder.BookBoxBuilder();
+        if (t.contains("beauty")) {
+            return new BeautyBoxBuilder();
+        } else if (t.contains("gaming")) {
+            return new GamingBoxBuilder();
+        } else if (t.contains("book")) {
+            return new BookBoxBuilder();
         } else {
             throw new IllegalArgumentException("Unknown box type: " + type);
         }
     }
 
     private void goBack() {
-        SubscriptionScreen screen = new SubscriptionScreen(stage, user, subscriptionService, orderService, paymentService);
+        SubscriptionScreen screen = new SubscriptionScreen(stage, user, orderService, paymentService);
         Scene scene = new Scene(screen, 550, 520);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setScene(scene);
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type, message);
-        alert.setTitle(title);
-        alert.showAndWait();
     }
 }

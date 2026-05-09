@@ -3,7 +3,6 @@ package com.subscriptionbox.ui;
 import com.subscriptionbox.model.User;
 import com.subscriptionbox.service.OrderService;
 import com.subscriptionbox.service.PaymentService;
-import com.subscriptionbox.service.SubscriptionService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,18 +21,15 @@ import javafx.stage.Stage;
 public class SubscriptionScreen extends VBox {
     private final Stage stage;
     private final User user;
-    private final SubscriptionService subscriptionService;
     private final OrderService orderService;
     private final PaymentService paymentService;
 
     private ComboBox<String> boxTypeCombo;
     private TextField durationField;
 
-    public SubscriptionScreen(Stage stage, User user, SubscriptionService subscriptionService,
-                              OrderService orderService, PaymentService paymentService) {
+    public SubscriptionScreen(Stage stage, User user, OrderService orderService, PaymentService paymentService) {
         this.stage = stage;
         this.user = user;
-        this.subscriptionService = subscriptionService;
         this.orderService = orderService;
         this.paymentService = paymentService;
 
@@ -121,7 +117,7 @@ public class SubscriptionScreen extends VBox {
         String cleanType = getCleanType(selectedType);
 
         BoxDetailsScreen detailsScreen = new BoxDetailsScreen(stage, user, cleanType, duration,
-                subscriptionService, orderService, paymentService);
+                orderService, paymentService);
         Scene scene = new Scene(detailsScreen, 550, 520);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setScene(scene);

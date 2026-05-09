@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -113,8 +112,7 @@ public class PaymentScreen extends VBox {
         Button backBtn = new Button("\u2B05  Back");
         backBtn.getStyleClass().add("secondary-button");
         backBtn.setOnAction(e -> {
-            SubscriptionScreen screen = new SubscriptionScreen(stage, user,
-                    new com.subscriptionbox.service.SubscriptionService(), orderService, paymentService);
+            SubscriptionScreen screen = new SubscriptionScreen(stage, user, orderService, paymentService);
             Scene scene = new Scene(screen, 550, 520);
             scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
             stage.setScene(scene);
@@ -149,7 +147,7 @@ public class PaymentScreen extends VBox {
             Order order = orderService.createOrder(user, subscription.getBox(), subscription.getTotalCost());
             showAlert(Alert.AlertType.INFORMATION, "Payment Successful",
                     "Order placed! Order ID: " + order.getId() + "\nStatus: " + order.getStatus());
-            OrderScreen orderScreen = new OrderScreen(stage, user, orderService);
+            OrderScreen orderScreen = new OrderScreen(stage, orderService);
             Scene scene = new Scene(orderScreen, 600, 520);
             scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
             stage.setScene(scene);

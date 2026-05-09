@@ -1,11 +1,5 @@
 package com.subscriptionbox.strategy;
 
-import com.subscriptionbox.strategy.PaymentStrategy;
-
-/**
- * Cash payment strategy implementation.
- * Part of the Strategy Pattern.
- */
 public class CashPayment implements PaymentStrategy {
     @Override
     public boolean pay(double amount) {

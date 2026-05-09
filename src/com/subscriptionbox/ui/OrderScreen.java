@@ -1,7 +1,7 @@
 package com.subscriptionbox.ui;
 
 import com.subscriptionbox.model.Order;
-import com.subscriptionbox.model.User;
+import com.subscriptionbox.model.Order.OrderStatus;
 import com.subscriptionbox.service.OrderService;
 import com.subscriptionbox.singleton.OrderManager;
 import javafx.geometry.Insets;
@@ -22,13 +22,11 @@ import java.util.List;
  */
 public class OrderScreen extends VBox {
     private final Stage stage;
-    private final User user;
     private final OrderService orderService;
     private final VBox orderListContainer;
 
-    public OrderScreen(Stage stage, User user, OrderService orderService) {
+    public OrderScreen(Stage stage, OrderService orderService) {
         this.stage = stage;
-        this.user = user;
         this.orderService = orderService;
         this.orderListContainer = new VBox(14);
 
@@ -124,10 +122,10 @@ public class OrderScreen extends VBox {
         return card;
     }
 
-    private String getStatusStyle(com.subscriptionbox.model.Order.OrderStatus status) {
-        if (status == com.subscriptionbox.model.Order.OrderStatus.PENDING) {
+    private String getStatusStyle(OrderStatus status) {
+        if (status == OrderStatus.PENDING) {
             return "status-pending";
-        } else if (status == com.subscriptionbox.model.Order.OrderStatus.SHIPPED) {
+        } else if (status == OrderStatus.SHIPPED) {
             return "status-shipped";
         } else {
             return "status-delivered";
