@@ -4,3 +4,7 @@ dist/
 *.class
 *.jar
 *.log
+# Ignore specific design patterns
+src/com/subscriptionbox/builder/
+src/com/subscriptionbox/strategy/
+src/com/subscriptionbox/observer/
