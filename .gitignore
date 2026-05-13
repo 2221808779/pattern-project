@@ -1,9 +1,3 @@
-build/
-nbproject/private/
-dist/
-*.class
-*.jar
-*.log
 src/com/subscriptionbox/builder/
 src/com/subscriptionbox/strategy/
 src/com/subscriptionbox/observer/
