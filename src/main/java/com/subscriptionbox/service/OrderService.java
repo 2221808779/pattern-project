@@ -2,7 +2,6 @@ package com.subscriptionbox.service;
 
 import com.subscriptionbox.model.Box;
 import com.subscriptionbox.model.Order;
-import com.subscriptionbox.model.Order.OrderStatus;
 import com.subscriptionbox.model.User;
 import com.subscriptionbox.singleton.OrderManager;
 

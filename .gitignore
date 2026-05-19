@@ -1,3 +1,18 @@
-src/com/subscriptionbox/builder/
-src/com/subscriptionbox/strategy/
-src/com/subscriptionbox/observer/
+# Maven output
+target/
+dependency-reduced-pom.xml
+
+# IDE files
+nbproject/
+build.xml
+*.mf
+
+# OS files
+Thumbs.db
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log

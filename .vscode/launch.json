@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run MainApp (javafx:run)",
+            "request": "launch",
+            "mainClass": "com.subscriptionbox.MainApp",
+            "projectName": "subscription-box-service",
+            "vmArgs": "--module-path \"${userHome}\\.m2\\repository\\org\\openjfx\\javafx-base\\21\\javafx-base-21-win.jar;${userHome}\\.m2\\repository\\org\\openjfx\\javafx-graphics\\21\\javafx-graphics-21-win.jar;${userHome}\\.m2\\repository\\org\\openjfx\\javafx-controls\\21\\javafx-controls-21-win.jar\" --add-modules javafx.controls"
+        }
+    ]
+}
